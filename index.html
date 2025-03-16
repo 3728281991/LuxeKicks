@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин кроссовок</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            border-bottom: 1px solid #ddd;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        header::-webkit-scrollbar {
+            display: none;
+        }
+
+        .brand {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .brand:hover {
+            background: #cec5c5;
+            color: #4834d4;
+        }
+
+        .container {
+            margin-top: 100px;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+            gap: 10px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .heart.favorite {
+            color: #e74c3c;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .price-btn {
+            width: 100px;
+            background: transparent;
+            border: 2px solid #4834d4;
+            color: #4834d4;
+            padding: 10px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-btn button {
+            background: none;
+            border: none;
+            color: #4834d4;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .page {
+            display: none;
+            margin: 100px 20px 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #4834d4;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile-form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .profile-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .profile-form button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #4834d4, #686de0);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .favorite-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .favorite-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">Nike</div>
+        <div class="brand">Adidas</div>
+        <div class="brand">Asics</div>
+        <div class="brand">Converse</div>
+        <div class="brand">Reebok</div>
+    </header>
+
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <span class="heart"><i class="far fa-heart"></i></span>
+                <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1f7f9b8c-5e9b-4b0c-9f2a-4e4e6f0e9e7b/air-max-270-mens-shoes-KkLcGR.png" alt="Кроссовки">
+                <h3>Nike Air Max 270</h3>
+                <p>Легкие кроссовки для бега</p>
+                <div class="price-btn">
+                    <span>5990 ₽</span>
+                    <button class="add-to-cart">+</button>
+                </div>
+            </div>
+            <!-- Другие карточки добавляются аналогично -->
+        </div>
+    </div>
+
+    <div id="cart" class="page">
+        <h2>Корзина</h2>
+        <div id="cart-items"></div>
+    </div>
+
+    <div id="favorites" class="page">
+        <h2>Избранное</h2>
+        <div id="favorite-items"></div>
+    </div>
+
+    <div id="profile" class="page">
+        <div class="profile-form">
+            <h2>Вход</h2>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Пароль">
+            <button>Войти</button>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-item" data-page="home">
+            <i class="fas fa-home"></i><br>Главная
+        </div>
+        <div class="nav-item" data-page="cart">
+            <i class="fas fa-shopping-cart"></i><br>Корзина
+        </div>
+        <div class="nav-item" data-page="favorites">
+            <i class="fas fa-heart"></i><br>Избранное
+        </div>
+        <div class="nav-item" data-page="profile">
+            <i class="fas fa-user"></i><br>Профиль
+        </div>
+    </nav>
+
+    <script>
+        // Навигация
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const pageId = item.dataset.page;
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+
+        // Добавление в корзину
+        const cartItems = document.getElementById('cart-items');
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.card');
+                const item = {
+                    name: card.querySelector('h3').textContent,
+                    price: card.querySelector('.price-btn span').textContent
+                };
+                const cartItem = document.createElement('div');
+                cartItem.textContent = `${item.name} - ${item.price}`;
+                cartItems.appendChild(cartItem);
+            });
+        });
+
+        // Добавление в избранное
+        const favoriteItems = document.getElementById('favorite-items');
+        document.querySelectorAll('.heart').forEach(heart => {
+            heart.addEventListener('click', () => {
+                heart.classList.toggle('favorite');
+                const card = heart.closest('.card');
+                const item = {
+                    name: card.querySelector('h3').textContent,
+                    price: card.querySelector('.price-btn span').textContent,
+                    img: card.querySelector('img').src
+                };
+
+                if (heart.classList.contains('favorite')) {
+                    const favItem = document.createElement('div');
+                    favItem.className = 'favorite-card';
+                    favItem.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}">
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p>${item.price}</p>
+                        </div>
+                    `;
+                    favoriteItems.appendChild(favItem);
+                } else {
+                    Array.from(favoriteItems.children).forEach(child => {
+                        if (child.querySelector('h3').textContent === item.name) {
+                            child.remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
